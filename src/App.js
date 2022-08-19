@@ -1,4 +1,5 @@
 import './App.css';
+import { useState, useEffect } from "react";
 
 const Person = (props) => {
     return(
@@ -13,13 +14,26 @@ const Person = (props) => {
 
 const App = ()  =>{
 
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        alert('Reload');
+        setCounter(100);
+    },[])
+
     const name = 'John';
     const isNameShowing = true;
 
   return (
     <div className="App">
+
+        <button onClick={() => setCounter((prevCount) => prevCount - 1)}>-</button>
+        <h1>{ counter }</h1>
+        <button onClick={() => setCounter((prevCount) => prevCount + 1)}>+</button>
+
+
       <h1>Hello { isNameShowing? name: 'there' }!</h1>
-        { !name ? (
+        { !isNameShowing ? (
             <>
                 There is no name
             </>
